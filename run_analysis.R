@@ -47,6 +47,8 @@ names(mean_std_dataset) <- gsub('[]()-', '', names(mean_std_dataset))
 dataset_with_activities <- merge(mean_std_dataset, activity_labels, by='activityId', all.x=TRUE)
 
 # Step 8 - Create the second, independent dataset, averaging the aggregated values by subject and activity
-second_tidy_set <- aggregate(. ~subjectId + activityId, dataset_with_activities, FUN=mean, na.rm=TRUE)
+second_tidy_set <- aggregate(. ~subjectId + activityType, dataset_with_activities, FUN=mean, na.rm=TRUE)
 write.table(second_tidy_set, 'independent_tidy_set.txt', row.name=FALSE)
 
+str(second_tidy_set)
+head(second_tidy_set[, 1:6], n=3)
